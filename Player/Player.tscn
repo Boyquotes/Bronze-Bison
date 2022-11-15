@@ -51,3 +51,14 @@ shape = SubResource( 1 )
 scale = Vector2( 0.75, 0.75 )
 frames = SubResource( 5 )
 animation = "Straight"
+
+[node name="FiringPositions" type="Node2D" parent="."]
+
+[node name="LeftGun" type="Node2D" parent="FiringPositions"]
+position = Vector2( -35, -24 )
+
+[node name="RightGun" type="Node2D" parent="FiringPositions"]
+position = Vector2( 34, -24 )
+
+[node name="FireDelayTimer" type="Timer" parent="."]
+one_shot = true

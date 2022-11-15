@@ -3,8 +3,15 @@ extends Area2D
 onready var animatedSprite:AnimatedSprite = $AnimatedSprite
 # onready var sprite:Node2D = get_node("Sprite")
 
+onready var firingPositions := $FiringPositions
+
 export var speed: float = 100
 var vel: Vector2 = Vector2(0,0)
+
+var plBullet:= preload("res://Bullet/Bullet.tscn")
+
+export var fireDelay:float = 0.15
+onready var fireDelayTimer:= $FireDelayTimer
 
 func _process(delta):
 	# Animate
@@ -14,6 +21,13 @@ func _process(delta):
 		animatedSprite.play("Right")
 	else:
 		animatedSprite.play("Straight")
+		
+	if Input.is_action_pressed("shoot") and fireDelayTimer.is_stopped():
+		fireDelayTimer.start(fireDelay)
+		for child in firingPositions.get_children():
+			var bullet := plBullet.instance()
+			bullet.global_position = child.global_position
+			get_tree().current_scene.add_child(bullet)
 
 func _physics_process(delta):
 	var dirVec: Vector2 = Vector2(0,0)
