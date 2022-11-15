@@ -11,3 +11,7 @@ Video Progress
 8   - complete
 9   - complete
 10  - complete
+11  - complete
+12  - complete
+13  - complete
+14  - complete
