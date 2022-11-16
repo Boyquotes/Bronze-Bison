@@ -2,19 +2,20 @@ extends Area2D
 class_name Player
 
 onready var animatedSprite:AnimatedSprite = $AnimatedSprite
-# onready var sprite:Node2D = get_node("Sprite")
-
 onready var firingPositions := $FiringPositions
+onready var fireDelayTimer := $FireDelayTimer
+onready var invincibilityTimer := $InvincibilityTimer
+onready var shieldSprite := $Shield
 
 export var speed: float = 100
-var vel: Vector2 = Vector2(0,0)
-
-var plBullet:= preload("res://Bullet/Bullet.tscn")
-
 export var fireDelay:float = 0.15
-onready var fireDelayTimer:= $FireDelayTimer
-
+var vel: Vector2 = Vector2(0,0)
+var plBullet:= preload("res://Bullet/Bullet.tscn")
 var life:int = 3
+var damageInvincibilityTime := 0.5
+
+func _ready():
+	shieldSprite.visible = false
 
 func _process(delta):
 	# Animate
@@ -55,6 +56,14 @@ func _physics_process(delta):
 		
 
 func damage(amount: int):
+	if !invincibilityTimer.is_stopped():
+		return
+	invincibilityTimer.start(damageInvincibilityTime)
+	shieldSprite.visible = true
 	life -= amount
 	if(life <= 0):
 		queue_free()
+
+
+func _on_InvincibilityTimer_timeout():
+	shieldSprite.visible = false
