@@ -1,4 +1,5 @@
 extends Area2D
+class_name Player
 
 onready var animatedSprite:AnimatedSprite = $AnimatedSprite
 # onready var sprite:Node2D = get_node("Sprite")
@@ -12,6 +13,8 @@ var plBullet:= preload("res://Bullet/Bullet.tscn")
 
 export var fireDelay:float = 0.15
 onready var fireDelayTimer:= $FireDelayTimer
+
+var life:int = 3
 
 func _process(delta):
 	# Animate
@@ -50,3 +53,8 @@ func _physics_process(delta):
 	position.x = clamp(position.x, 0, viewRect.size.x)
 	position.y = clamp(position.y, 0, viewRect.size.y)
 		
+
+func damage(amount: int):
+	life -= amount
+	if(life <= 0):
+		queue_free()
