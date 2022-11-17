@@ -18,3 +18,7 @@ Video Progress
 15 [12] - complete
 16 [13] - complete
 17 [14] - complete
+18 [15] - complete
+19 [16] - complete
+20 [17] - complete
+21 [18.1] - complete
