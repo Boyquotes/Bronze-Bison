@@ -16,6 +16,7 @@ var damageInvincibilityTime := 0.5
 
 func _ready():
 	shieldSprite.visible = false
+	Signals.emit_signal("on_player_life_changed", life)
 
 func _process(delta):
 	# Animate
@@ -61,6 +62,7 @@ func damage(amount: int):
 	invincibilityTimer.start(damageInvincibilityTime)
 	shieldSprite.visible = true
 	life -= amount
+	Signals.emit_signal("on_player_life_changed", life)
 	if(life <= 0):
 		queue_free()
 
