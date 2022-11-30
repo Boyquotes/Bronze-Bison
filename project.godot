@@ -10,17 +10,23 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "Enemy",
+"language": "GDScript",
+"path": "res://Enemies/Enemy.gd"
+}, {
+"base": "Area2D",
 "class": "Player",
 "language": "GDScript",
 "path": "res://Player/Player.gd"
 } ]
 _global_script_class_icons={
+"Enemy": "",
 "Player": ""
 }
 
 [application]
 
-config/name="Bronze Bison"
+config/name="Bronze Bison - Space Shooter"
 run/main_scene="res://MainScenes/Gameplay.tscn"
 config/icon="res://icon.png"
 
